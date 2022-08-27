@@ -5,6 +5,9 @@ workflows:
   build:
     jobs:
       - build
+  compile:
+    jobs:
+      - build
 
 jobs:
   build:
