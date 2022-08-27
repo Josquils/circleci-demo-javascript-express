@@ -5,9 +5,6 @@ workflows:
   build:
     jobs:
       - build
-  compile:
-    jobs:
-      - build
 
 jobs:
   build:
@@ -19,7 +16,7 @@ jobs:
       - checkout
       - run:
           name: update-npm
-          command: 'sudo npm install -g npm@5'
+          command: 'npm install -g npm@5'
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
@@ -43,3 +40,7 @@ jobs:
           prefix: coverage
       - store_test_results:
           path: test-results.xml
+      - run:
+          name: on fail
+          command: echo "Failiure men"
+          when: on_fail
